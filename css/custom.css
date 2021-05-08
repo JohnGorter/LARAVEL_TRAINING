@@ -1,0 +1,11 @@
+body {
+	background-image: none;
+}
+
+ol.agenda, ul.agenda {
+	columns: 2;
+}
+
+.agenda li {
+	margin-left: 40px;
+}
