@@ -17,11 +17,11 @@ php artisan make:middleware EnsureTokenIsValid
 ```
 
 This command will place a new EnsureTokenIsValid class within your app/Http/Middleware directory
-In this middleware, only access to the route is allowed if the supplied token input matches a specified value. Otherwise, we will redirect the users back to the home URI:
 
 
 --
 ## Defining Middleware
+In this middleware, only access to the route is allowed if the supplied token input matches a specified value
 
 ```
 <?php
@@ -29,13 +29,6 @@ namespace App\Http\Middleware;
 use Closure;
 class EnsureTokenIsValid
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
         if ($request->input('token') !== 'my-secret-token') {
@@ -75,6 +68,8 @@ class BeforeMiddleware
     - ran during every HTTP request to your application
     - list the middleware class in the $middleware property of your app/Http/Kernel.php class
 
+--
+## Registering Middleware
 - Assigning Middleware To Routes
     - ran with specific routes
     - first assign the middleware a key in your application's app/Http/Kernel.php file
@@ -174,11 +169,9 @@ Route::middleware(['web'])->group(function () {
 });
 ```
 
-Out of the box, the web and api middleware groups are automatically applied to your application's corresponding routes/web.php and routes/api.php files by the App\Providers\RouteServiceProvider
-
 --
 ## Sorting Middleware
-If you need middleware to execute in a specific order but not have control over their order when they are assigned to the route use the $middlewarePriority property of your app/Http/Kernel.php - this property may not exist in your HTTP kernel by default. If it does not exist, you may copy its default definition below:
+If you need middleware to execute in a specific order but not have control over their order when they are assigned to the route use the $middlewarePriority property of your app/Http/Kernel.php 
 ```
 /**
  * The priority-sorted list of middleware.
@@ -236,6 +229,10 @@ Route::put('/post/{id}', function ($id) {
 Sometimes a middleware may need to do some work after the HTTP response has been sent to the browser
 - define a terminate method on your middleware
 - this terminate method will automatically be called after the response is sent to the browser
+
+
+--
+## Terminable Middleware
 ```
 <?php
 

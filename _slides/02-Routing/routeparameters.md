@@ -104,6 +104,7 @@ public function boot()
 ```
 
 Once the pattern has been defined, it is automatically applied to all routes using that parameter name:
+
 ```
 Route::get('/user/{id}', function ($id) {
     // Only executed if {id} is numeric...
@@ -114,9 +115,11 @@ Route::get('/user/{id}', function ($id) {
 ## Encoded Forward Slashes
 The Laravel routing component allows all characters except / to be present within route parameter values. You must explicitly allow / to be part of your placeholder using a where condition regular expression:
 
+```
 Route::get('/search/{search}', function ($search) {
     return $search;
 })->where('search', '.*');
+```
 
 Encoded forward slashes are only supported within the last route segment
 

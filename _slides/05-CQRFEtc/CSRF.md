@@ -1,14 +1,15 @@
 # Introduction
 
 --
-## Introduction
-Cross-site request forgeries are a type of malicious exploit whereby unauthorized commands are performed on behalf of an authenticated user. Thankfully, Laravel makes it easy to protect your application from cross-site request forgery (CSRF) attacks.
+## Cross-site request forgeries
+A type of malicious exploit whereby unauthorized commands are performed on behalf of an authenticated user
 
-An Explanation Of The Vulnerability
-In case you're not familiar with cross-site request forgeries, let's discuss an example of how this vulnerability can be exploited. Imagine your application has a /user/email route that accepts a POST request to change the authenticated user's email address. Most likely, this route expects an email input field to contain the email address the user would like to begin using.
+--
+## An Explanation Of The Vulnerability
+Imagine your application has a /user/email route that accepts a POST request to change the authenticated user's email address. Most likely, this route expects an email input field to contain the email address the user would like to begin using.
 
 Without CSRF protection, a malicious website could create an HTML form that points to your application's /user/email route and submits the malicious user's own email address:
-
+```
 <form action="https://your-application.com/user/email" method="POST">
     <input type="email" value="malicious-email@example.com">
 </form>
@@ -16,15 +17,23 @@ Without CSRF protection, a malicious website could create an HTML form that poin
 <script>
     document.forms[0].submit();
 </script>
+```
+
+--
+## An Explanation Of The Vulnerability
 If the malicious website automatically submits the form when the page is loaded, the malicious user only needs to lure an unsuspecting user of your application to visit their website and their email address will be changed in your application.
 
 To prevent this vulnerability, we need to inspect every incoming POST, PUT, PATCH, or DELETE request for a secret session value that the malicious application is unable to access.
 
-Preventing CSRF Requests
-Laravel automatically generates a CSRF "token" for each active user session managed by the application. This token is used to verify that the authenticated user is the person actually making the requests to the application. Since this token is stored in the user's session and changes each time the session is regenerated, a malicious application is unable to access it.
+--
+## Preventing CSRF Requests
+Laravel automatically generates a CSRF "token" for each active user session managed by the application
+
+This token is used to verify that the authenticated user is the person actually making the requests to the application. Since this token is stored in the user's session and changes each time the session is regenerated, a malicious application is unable to access it.
 
 The current session's CSRF token can be accessed via the request's session or via the csrf_token helper function:
 
+```
 use Illuminate\Http\Request;
 
 Route::get('/token', function (Request $request) {
@@ -34,6 +43,10 @@ Route::get('/token', function (Request $request) {
 
     // ...
 });
+```
+
+--
+## Preventing CSRF Requests
 Anytime you define a "POST", "PUT", "PATCH", or "DELETE" HTML form in your application, you should include a hidden CSRF _token field in the form so that the CSRF protection middleware can validate the request. For convenience, you may use the @csrf Blade directive to generate the hidden token input field:
 
 <form method="POST" action="/profile">

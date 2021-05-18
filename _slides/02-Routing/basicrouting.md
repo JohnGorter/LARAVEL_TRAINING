@@ -44,7 +44,6 @@ Route::delete($uri, $callback);
 Route::options($uri, $callback);
 ```
 
-
 --
 ## Available Router Methods
 Multiple HTTP verb routes:
@@ -58,7 +57,7 @@ Route::any('/', function () {
 });
 ```
 
--
+--
 ## Dependency Injection
 You may type-hint any dependencies required by your route in your route's callback signature
 - declared dependencies will automatically be resolved and injected 
@@ -106,6 +105,18 @@ Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
 ```
 
 When using route parameters in view routes, the following parameters are reserved by Laravel and cannot be used: view, data, status, and headers.
+
+--
+## Accessing The Current Route
+You may use the current, currentRouteName, and currentRouteAction methods on the Route facade to access information about the route handling the incoming request
+
+```
+use Illuminate\Support\Facades\Route;
+
+$route = Route::current(); // Illuminate\Routing\Route
+$name = Route::currentRouteName(); // string
+$action = Route::currentRouteAction(); // string
+```
 
 --
 <!-- .slide: data-background="url('images/demo.jpg')" --> 
