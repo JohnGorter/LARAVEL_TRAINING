@@ -1,30 +1,32 @@
-## Kotlin
-> "Make JAVA more effective and robust"
+## Laravel
+> "The PHP Framework"
 
 --
 
-###  Why Kotlin?
-* Concise
-	* Less boilerplate code
-* Safe
-	* Avoid errors
-* Interoperable
-	* Works with existing JVM libraries, Android and in the browser
-* Tool friendly
-	* Works in all Java IDE's
+###  Why Laravel?
+* Full stack
+	* Create backend and frontend easily
+* Mature
+	* Used everywhere
+* Performant
+	* Performs quite fast
+* Modern
+	* Uses components and slots
 
 --
 
 ### Agenda
-1. Basics
-2. Functions
-3. Classes
-4. Null-Safety
-5. Equality
-6. This Expressions
-7. Coroutines
-8. DSLs
-9. Kotlin Crossplatform
+1. Installation
+2. Routing
+3. Middleware
+4. Controllers
+5. CQRF/Request/Response
+6. Views
+7. Blade Templates
+8. Eloquent
+8. Mail
+9. Task Scheduling
+10. Testing
 
 <!-- .element class="agenda" -->
 
