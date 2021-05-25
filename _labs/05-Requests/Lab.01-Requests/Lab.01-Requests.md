@@ -1,4 +1,4 @@
-# Requests
+# Lab Requests
 ## Lab time: 45 minutes
 
 # Excercise 1: Make a login processing controller
