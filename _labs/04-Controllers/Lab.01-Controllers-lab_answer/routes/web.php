@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,6 @@ Route::get('/user/{id}', [UserController::class, "get"])->whereNumber("id")->nam
 Route::get('/user/{name}', [UserController::class, "getByName"])->whereAlpha("name")->name("username");
 Route::any('/greeting', GreetingController::class)->middleware("john");
 Route::get('/search/{search}', [SearchController::class, "search"])->where('search', '.*');
-
 Route::resource('student', StudentController::class);
 // function handle(Request $request, $param)
 // {

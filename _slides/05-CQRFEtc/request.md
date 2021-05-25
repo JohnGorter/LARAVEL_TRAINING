@@ -474,7 +474,7 @@ This helper method provides a convenient way to allow all of your application's 
 <!-- .slide: data-background="url('images/demo.jpg')" --> 
 <!-- .slide: class="lab" -->
 ## Demo time!
-Demo. CSRF Demo
+Demo. Request handling Demo
 
 
 --

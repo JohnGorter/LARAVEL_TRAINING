@@ -25,6 +25,9 @@ Route::get('/user/{name}', [UserController::class, "getByName"])->whereAlpha("na
 Route::any('/greeting', GreetingController::class)->middleware("john");
 Route::get('/search/{search}', [SearchController::class, "search"])->where('search', '.*');
 
+Route::post('/login', [LoginController::class, "login"]);
+Route::post('/register', [LoginController::class, "register"]);
+
 Route::resource('student', StudentController::class);
 // function handle(Request $request, $param)
 // {
