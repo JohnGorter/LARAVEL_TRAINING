@@ -8,7 +8,8 @@ A type of malicious exploit whereby unauthorized commands are performed on behal
 ## An Explanation Of The Vulnerability
 Imagine your application has a /user/email route that accepts a POST request to change the authenticated user's email address. Most likely, this route expects an email input field to contain the email address the user would like to begin using.
 
-Without CSRF protection, a malicious website could create an HTML form that points to your application's /user/email route and submits the malicious user's own email address:
+Without CSRF protection, a malicious website could create an HTML form that points to your application's /user/email route and submits the malicious user's own email address
+
 ```
 <form action="https://your-application.com/user/email" method="POST">
     <input type="email" value="malicious-email@example.com">
@@ -48,23 +49,32 @@ Route::get('/token', function (Request $request) {
 --
 ## Preventing CSRF Requests
 Anytime you define a "POST", "PUT", "PATCH", or "DELETE" HTML form in your application, you should include a hidden CSRF _token field in the form so that the CSRF protection middleware can validate the request. For convenience, you may use the @csrf Blade directive to generate the hidden token input field:
-
+```
 <form method="POST" action="/profile">
     @csrf
 
     <!-- Equivalent to... -->
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 </form>
-The App\Http\Middleware\VerifyCsrfToken middleware, which is included in the web middleware group by default, will automatically verify that the token in the request input matches the token stored in the session. When these two tokens match, we know that the authenticated user is the one initiating the request.
+```
+The App\Http\Middleware\VerifyCsrfToken middleware, which is included in the web middleware group by default, will automatically verify that the token in the request input matches the token stored in the session
 
-CSRF Tokens & SPAs
+--
+## CSRF Tokens & SPAs
 If you are building an SPA that is utilizing Laravel as an API backend, you should consult the Laravel Sanctum documentation for information on authenticating with your API and protecting against CSRF vulnerabilities.
 
-Excluding URIs From CSRF Protection
-Sometimes you may wish to exclude a set of URIs from CSRF protection. For example, if you are using Stripe to process payments and are utilizing their webhook system, you will need to exclude your Stripe webhook handler route from CSRF protection since Stripe will not know what CSRF token to send to your routes.
+--
+## Excluding URIs From CSRF Protection
+Sometimes you may wish to exclude a set of URIs from CSRF protection. For example, if you are using Stripe to process payments and are utilizing their webhook system, you will need to exclude your Stripe webhook handler route from CSRF protection since Stripe will not know what CSRF token to send to your routes
 
-Typically, you should place these kinds of routes outside of the web middleware group that the App\Providers\RouteServiceProvider applies to all routes in the routes/web.php file. However, you may also exclude the routes by adding their URIs to the $except property of the VerifyCsrfToken middleware:
+Typically, you should place these kinds of routes outside of the web middleware group that the App\Providers\RouteServiceProvider applies to all routes in the routes/web.php file. 
 
+
+--
+## Excluding URIs From CSRF Protection
+However, you may also exclude the routes by adding their URIs to the $except property of the VerifyCsrfToken middleware:
+
+```
 <?php
 
 namespace App\Http\Middleware;
@@ -84,25 +94,45 @@ class VerifyCsrfToken extends Middleware
         'http://example.com/foo/*',
     ];
 }
+```
 
 For convenience, the CSRF middleware is automatically disabled for all routes when running tests.
 
+--
+## X-CSRF-TOKEN
+In addition to checking for the CSRF token as a POST parameter, the App\Http\Middleware\VerifyCsrfToken middleware will also check for the X-CSRF-TOKEN request header. You could, for example, store the token in an HTML meta tag
 
-X-CSRF-TOKEN
-In addition to checking for the CSRF token as a POST parameter, the App\Http\Middleware\VerifyCsrfToken middleware will also check for the X-CSRF-TOKEN request header. You could, for example, store the token in an HTML meta tag:
-
+```
 <meta name="csrf-token" content="{{ csrf_token() }}">
-Then, you can instruct a library like jQuery to automatically add the token to all request headers. This provides simple, convenient CSRF protection for your AJAX based applications using legacy JavaScript technology:
+```
 
+Then, you can instruct a library like jQuery to automatically add the token to all request headers. 
+
+This provides simple, convenient CSRF protection for your AJAX based applications using legacy JavaScript technology
+```
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-X-XSRF-TOKEN
-Laravel stores the current CSRF token in an encrypted XSRF-TOKEN cookie that is included with each response generated by the framework. You can use the cookie value to set the X-XSRF-TOKEN request header.
+```
 
-This cookie is primarily sent as a developer convenience since some JavaScript frameworks and libraries, like Angular and Axios, automatically place its value in the X-XSRF-TOKEN header on same-origin requests.
+--
+## X-XSRF-TOKEN
+Laravel stores the current CSRF token in an encrypted XSRF-TOKEN cookie that is included with each response generated by the framework. You can use the cookie value to set the X-XSRF-TOKEN request header
+
+This cookie is primarily sent as a developer convenience since some JavaScript frameworks and libraries, like Angular and Axios, automatically place its value in the X-XSRF-TOKEN header on same-origin requests
+
+By default, the resources/js/bootstrap.js file includes the Axios HTTP library which will automatically send the X-XSRF-TOKEN header for you
+
+--
+<!-- .slide: data-background="url('images/demo.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Demo time!
+Demo. CSRF Demo
 
 
-By default, the resources/js/bootstrap.js file includes the Axios HTTP library which will automatically send the X-XSRF-TOKEN header for you.
+--
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!
