@@ -119,6 +119,7 @@ $this->middleware(function ($request, $next) {
 --
 ## Resource Controllers
 If you think of each Eloquent model in your application as a "resource", it is typical to perform the same sets of actions against each resource in your application
+
 - for example a Photo model and a Movie model. We can create, read, update, or delete these resources
 
 
@@ -156,12 +157,13 @@ Route::resources([
 --
 ## Resource Controllers
 Actions Handled By Resource Controller
+
 Verb|URI|Action|Route Name
 ---|---|---|---
 GET|/photos|index|photos.index
 GET|/photos/create|create|photos.create
 POST|/photos|store|photos.store
-GET|/photos/{photo}	show|photos.show
+GET|/photos/{photo}|show|photos.show
 GET|/photos/{photo}/edit|edit|photos.edit
 PUT/PATCH|/photos/{photo}|update|photos.update
 DELETE|/photos/{photo}|destroy|photos.destroy
@@ -283,6 +285,7 @@ DELETE|/comments/{comment}|destroy|comments.destroy
 ## Naming Resource Routes
 By default, all resource controller actions have a route name;
 - you can override these names 
+
 ```
 use App\Http\Controllers\PhotoController;
 

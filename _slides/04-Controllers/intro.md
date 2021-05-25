@@ -10,6 +10,9 @@ We will cover
 - controller Middleware
 - resource Controllers
 - partial Resource Routes
+
+--
+## In this lesson
 - nested Resources
 - naming Resource Routes
 - naming Resource Route Parameters
