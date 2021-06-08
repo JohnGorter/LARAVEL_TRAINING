@@ -48,9 +48,13 @@
 
 --
 ## Introduction
-Laravel includes Eloquent, an object-relational mapper (ORM) that makes it enjoyable to interact with your database. 
+Laravel includes Eloquent, an object-relational mapper (ORM) 
 
-When using Eloquent, each database table has a corresponding "Model". In addition to retrieving records from the database table, Eloquent models allow you to insert, update, and delete records from the table as well
+When using Eloquent, each database table has a corresponding "Model". 
+
+Eloquent models allow you to
+- retrieve records from the database table
+- insert, update, and delete records from the table
 
 --
 ## Introduction
@@ -118,7 +122,7 @@ class Flight extends Model
 ## Table Names
 After glancing at the example above, you may have noticed that we did not tell Eloquent which database table corresponds to our Flight model. 
 
-- By convention, the "snake case", plural name of the class will be used as the table name unless another name is explicitly specified. So, in this case, Eloquent will assume the Flight model stores records in the flights table, while an AirTrafficController model would store records in an air_traffic_controllers table.
+- By convention, the "snake case", plural name of the class will be used as the table name unless another name is explicitly specified. 
 
 If your model's corresponding database table does not fit this convention, you may manually specify the model's table name by defining a table property on the model:
 ```
