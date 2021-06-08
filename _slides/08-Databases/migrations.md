@@ -2,34 +2,41 @@
 
 --
 ## In this lesson
-Introduction
-Generating Migrations
-Squashing Migrations
-Migration Structure
-Running Migrations
-Rolling Back Migrations
+We will cover
+- Introduction
+- Generating Migrations
+- Squashing Migrations
+- Migration Structure
+- Running Migrations
+- Rolling Back Migrations
 
 --
 ## In this lesson
-Tables
-Creating Tables
-Updating Tables
-Renaming / Dropping Tables
-Columns
-Creating Columns
-Available Column Types
-Column Modifiers
-Modifying Columns
-Dropping Columns
+We will cover
+- Tables
+- Creating Tables
+- Updating Tables
+- Renaming / Dropping Tables
 
 --
 ## In this lesson
-Indexes
-Creating Indexes
-Renaming Indexes
-Dropping Indexes
-Foreign Key Constraints
-Events
+We will cover
+- Columns
+- Creating Columns
+- Available Column Types
+- Column Modifiers
+- Modifying Columns
+- Dropping Columns
+
+--
+## In this lesson
+We will cover
+- Indexes
+- Creating Indexes
+- Renaming Indexes
+- Dropping Indexes
+- Foreign Key Constraints
+- Events
 
 --
 ## Introduction

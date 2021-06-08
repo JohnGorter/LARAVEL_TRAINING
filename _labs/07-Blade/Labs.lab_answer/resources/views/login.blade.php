@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title')
+{!! '<h1>login</h1>' !!}
+@endsection
+
+@section('content')
     @env('test')
         <style> body { background-color:yellow } </style>
-        <h1>TEST</h1>
     @endenv
     @guest
-    {!! '<h1>login</h1>' !!}
+
+    <x-Alert class="warning" :message="''">
+        <x-slot name="header">Login</x-slot>
+        <h1>hello world<small>from john</small></h1>
+        <x-slot name="footer">All rights reserved 2020</x-slot>
+    </x-Alert>
+
     <form method="post">
         Username: <input type="text" name="name" />
         Password: <input type="password" name="password" />
@@ -22,5 +25,4 @@
     @auth
     Welcome user!   
     @endauth
-</body>
-</html>
+@endsection

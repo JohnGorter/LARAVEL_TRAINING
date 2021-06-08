@@ -26,7 +26,7 @@ Route::get('/user/{name}', [UserController::class, "getByName"])->whereAlpha("na
 Route::any('/greeting', GreetingController::class)->middleware("john");
 Route::get('/search/{search}', [SearchController::class, "search"])->where('search', '.*');
 
-Route::get('/login', function() { return view("login"); });
+Route::get('/login', function() { return view("login")->with("message", "hello universe"); });
 Route::post('/login', [LoginController::class, "login"]);
 Route::get('/logout', function() { return view("logout"); });
 Route::post('/logout', [LoginController::class, "logout"]);
