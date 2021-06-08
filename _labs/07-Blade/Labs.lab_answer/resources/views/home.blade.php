@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-    <?php echo '<h1>login again</h1>' ?>
-    <form method="post">
-        Username: <input type="text" name="name" />
-        Password: <input type="password" name="password" />
-        <input type="submit" value="login" />
-    </form>
+    <?php 
+        if(isset($user)) {
+            echo 'Hello ' . $user . ' <a href="/logout">logout</a>';
+        } 
+        else {
+            echo '<a href="/login">Login here</a>';
+        }
+    ?>
 </body>
 </html>

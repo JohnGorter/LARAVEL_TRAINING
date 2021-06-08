@@ -7,11 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <?php echo '<h1>login again</h1>' ?>
+    @env('test')
+        <style> body { background-color:yellow } </style>
+        <h1>TEST</h1>
+    @endenv
+    @guest
+    {!! '<h1>login</h1>' !!}
     <form method="post">
         Username: <input type="text" name="name" />
         Password: <input type="password" name="password" />
         <input type="submit" value="login" />
     </form>
+    @endguest
+    @auth
+    Welcome user!   
+    @endauth
 </body>
 </html>

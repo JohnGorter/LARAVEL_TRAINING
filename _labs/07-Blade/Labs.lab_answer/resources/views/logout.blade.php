@@ -7,11 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <?php echo '<h1>login again</h1>' ?>
+    <p>Are you sure you want to logout? </p>
     <form method="post">
-        Username: <input type="text" name="name" />
-        Password: <input type="password" name="password" />
-        <input type="submit" value="login" />
+        <input type="submit" value="yes" />
     </form>
 </body>
 </html>
